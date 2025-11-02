@@ -1,0 +1,137 @@
+# Hunyuan3D-2 Workflow Configuration
+# ===================================
+
+# Model settings - BEST QUALITY DEFAULTS
+model:
+  # Model to use: 'h2' (full 2.6B - BEST QUALITY), 'mini' (0.6B), or 'mv' (multiview)
+  type: 'h2'
+  
+  # Device: 'cuda' or 'cpu'
+  device: 'cuda'
+  
+  # Enable Flash VDM for faster generation (doesn't reduce quality)
+  enable_flashvdm: true
+
+# Face processing settings (requires facexlib) - ENABLED FOR BEST RESULTS
+face_processing:
+  # Enable face detection and alignment
+  enabled: true
+  
+  # Automatically detect if image is a portrait
+  auto_detect: true
+  
+  # Confidence threshold for face detection (0.0-1.0)
+  confidence_threshold: 0.5
+  
+  # Padding around detected face (0.0-1.0)
+  face_padding: 0.3
+
+# Image enhancement settings (requires kornia) - ENABLED FOR BEST QUALITY
+image_enhancement:
+  # Enable image enhancement
+  enabled: true
+  
+  # Sharpness enhancement factor (1.0 = no change, >1.0 = sharper)
+  # 1.5 for maximum sharpness
+  sharpness_factor: 1.5
+  
+  # Normalize illumination - CRITICAL for quality
+  normalize_illumination: true
+  
+  # Apply perspective correction
+  perspective_correction: false
+  
+  # Rotation angle for correction (degrees)
+  rotation_angle: 0.0
+
+# Generation settings - MAXIMUM QUALITY
+generation:
+  # Number of inference steps (more = higher quality, slower)
+  # 50 steps for best quality with full model
+  num_inference_steps: 50
+  
+  # Guidance scale (higher = more adherence to input)
+  # 7.5 for better adherence and quality
+  guidance_scale: 7.5
+  
+  # Octree resolution for mesh extraction
+  # 384 for maximum detail (requires more VRAM)
+  octree_resolution: 384
+  
+  # Number of chunks for processing
+  # 20000 for high-quality mesh
+  num_chunks: 20000
+  
+  # Random seed (for reproducibility)
+  seed: 12345
+
+# Texture settings - MAXIMUM QUALITY
+texture:
+  # Enable texture generation
+  enabled: true
+  
+  # Face reduction target (number of faces in mesh)
+  # 50000+ for high-quality texture application
+  target_face_count: 50000
+  
+  # Texture resolution (internal, for multiview diffusion)
+  # 2048 for maximum quality
+  render_size: 2048
+  
+  # Texture map size
+  # 2048 for ultra-high resolution textures (requires more VRAM)
+  texture_size: 2048
+
+# Export settings
+export:
+  # Export formats: 'glb', 'obj', 'ply', 'stl'
+  formats:
+    - 'glb'
+    - 'obj'
+  
+  # Extract texture as separate PNG
+  extract_texture: true
+  
+  # Include normals in export
+  include_normals: true
+
+# Batch processing settings
+batch:
+  # Skip if output already exists
+  skip_existing: true
+  
+  # Continue on error (don't stop batch if one fails)
+  continue_on_error: true
+  
+  # Maximum concurrent processes
+  max_workers: 1
+
+# Output settings
+output:
+  # Base output directory
+  directory: 'outputs'
+  
+  # Organize by date
+  organize_by_date: false
+  
+  # Save intermediate results (preprocessed image, white mesh, etc.)
+  save_intermediate: false
+  
+  # Naming pattern: {name}, {timestamp}, {seed}
+  naming_pattern: '{name}_textured'
+
+# Multiview settings
+multiview:
+  # Required views (at least one must be provided)
+  required_views:
+    - 'front'
+  
+  # Optional views
+  optional_views:
+    - 'back'
+    - 'left'
+    - 'right'
+  
+  # Reference view for texturing (which view to use)
+  texture_reference: 'front'
+

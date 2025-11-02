@@ -1,0 +1,25 @@
+# Custom Workflows GUI Requirements
+# ==================================
+# Install these dependencies to use the custom workflows GUI
+
+# Core dependencies (from main requirements.txt)
+gradio
+pyyaml
+torch
+trimesh
+pillow
+
+# For image processing
+opencv-python
+numpy
+
+# Required for custom workflows features
+facexlib    # Face detection and alignment
+kornia      # Image enhancement
+
+# Background removal
+rembg
+
+# If you have the main project installed, these should already be satisfied
+# Otherwise, install the main requirements.txt first
+

@@ -14,7 +14,7 @@ torchvision
 #ipdb
 omegaconf
 diso
-#sentencepiece
+sentencepiece
 tqdm
 
 # Mesh Processing
@@ -22,8 +22,10 @@ trimesh
 pymeshlab
 pygltflib
 xatlas
-#kornia
-#facexlib
+
+# Custom Workflows - Required for GUI
+kornia
+facexlib
 
 # Training
 accelerate
@@ -38,5 +40,6 @@ mmgp==3.2.7
 uvicorn
 rembg
 onnxruntime
+pyyaml
 #gevent
 #geventhttpclient
